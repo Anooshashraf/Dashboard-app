@@ -106,107 +106,107 @@
 //     );
 // }
 
-'use client';
-import { useState, useEffect, FormEvent } from 'react';
-import { useRouter } from 'next/navigation';
-import { useAuth } from '../../components/AuthProvider';
+"use client";
+import { useState, useEffect, FormEvent } from "react";
+import { useRouter } from "next/navigation";
+import { useAuth } from "../../components/AuthProvider";
 
 export default function Login() {
-    const [email, setEmail] = useState<string>('');
-    const [password, setPassword] = useState<string>('');
-    const [error, setError] = useState<string>('');
-    const { isAuthenticated, login, isLoading } = useAuth();
-    const router = useRouter();
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [error, setError] = useState<string>("");
+  const { isAuthenticated, login, isLoading } = useAuth();
+  const router = useRouter();
 
-    useEffect(() => {
-        if (isAuthenticated && !isLoading) {
-            router.push('/');
-        }
-    }, [isAuthenticated, isLoading, router]);
-
-    if (isLoading || isAuthenticated) {
-        return (
-            <div className="app-loading">
-                <div className="loading-spinner"></div>
-                <p>Loading...</p>
-            </div>
-        );
+  useEffect(() => {
+    if (isAuthenticated && !isLoading) {
+      router.push("/");
     }
+  }, [isAuthenticated, isLoading, router]);
 
-    const handleSubmit = (e: FormEvent): void => {
-        e.preventDefault();
-        setError('');
-
-        if (email === 'admin@company.com' && password === 'company123') {
-            login();
-            router.push('/');
-        } else {
-            setError('Invalid email or password. Use admin@company.com / company123');
-        }
-    };
-
+  if (isLoading || isAuthenticated) {
     return (
-        <div className="app login-page">
-            <div className="login-container">
-                {/* Login Card */}
-                <div className="login-card">
-                    {/* Header */}
-                    <div className="brand">
-                        <div className="logo">🔐</div>
-                        <div className="title">
-                            <div className="main">Company Dashboards</div>
-                            <div className="sub">Sign in to access your reports</div>
-                        </div>
-                    </div>
-
-                    {/* Form */}
-                    <form className="login-form" onSubmit={handleSubmit}>
-                        <div className="form-group">
-                            <input
-                                id="email"
-                                name="email"
-                                type="email"
-                                required
-                                className="input-url"
-                                placeholder="Email address"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                            />
-                        </div>
-                        <div className="form-group">
-                            <input
-                                id="password"
-                                name="password"
-                                type="password"
-                                required
-                                className="input-url"
-                                placeholder="Password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                            />
-                        </div>
-
-                        {error && (
-                            <div className="error-message">
-                                {error}
-                            </div>
-                        )}
-
-                        <button type="submit" className="btn btn-primary login-btn">
-                            Sign in
-                        </button>
-                    </form>
-
-                    {/* Demo Credentials */}
-                    <div className="demo-credentials">
-                        <p className="demo-title">Demo credentials:</p>
-                        <div className="demo-info">
-                            <p>Email: <span>admin@company.com</span></p>
-                            <p>Password: <span>company123</span></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+      <div className="app-loading">
+        <div className="loading-spinner"></div>
+        <p>Loading...</p>
+      </div>
     );
+  }
+
+  const handleSubmit = (e: FormEvent): void => {
+    e.preventDefault();
+    setError("");
+
+    if (email === "admin@company.com" && password === "company123") {
+      login();
+      router.push("/");
+    } else {
+      setError("Invalid email or password.");
+    }
+  };
+
+  return (
+    <div className="app login-page">
+      <div className="login-container">
+        {/* Login Card */}
+        <div className="login-card">
+          {/* Header */}
+          <div className="brand">
+            <div className="logo">🔐</div>
+            <div className="title">
+              <div className="main">Inventory Analytics</div>
+              <div className="sub">Sign in to access your reports</div>
+            </div>
+          </div>
+
+          {/* Form */}
+          <form className="login-form" onSubmit={handleSubmit}>
+            <div className="form-group">
+              <input
+                id="email"
+                name="email"
+                type="email"
+                required
+                className="input-url"
+                placeholder="Email address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div className="form-group">
+              <input
+                id="password"
+                name="password"
+                type="password"
+                required
+                className="input-url"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+
+            {error && <div className="error-message">{error}</div>}
+
+            <button type="submit" className="btn btn-primary login-btn">
+              Sign in
+            </button>
+          </form>
+
+          {/* Demo Credentials */}
+          <div className="demo-credentials">
+            <p className="demo-title">Demo credentials:</p>
+            <div className="demo-info">
+              <p>
+                Email: <span>example@company.com</span>
+              </p>
+              <p>
+                Password: <span>example123</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }

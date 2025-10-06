@@ -146,43 +146,41 @@
 //   );
 // }
 
-
-
-'use client';
-import { useAuth } from '../components/AuthProvider';
-import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
-import Link from 'next/link';
+"use client";
+import { useAuth } from "../components/AuthProvider";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import Link from "next/link";
 
 const dashboardCards = [
   {
-    title: 'RMA Dashboard',
-    description: 'Return Merchandise Authorization reports and analytics',
-    href: '/dashboard/rma',
-    icon: '📊',
-    color: 'card-blue'
+    title: "RMA Dashboard",
+    description: "Return Merchandise Authorization reports and analytics",
+    href: "/dashboard/rma",
+    icon: "📊",
+    color: "card-blue",
   },
   {
-    title: 'Audit Dashboard',
-    description: 'Audit reports and compliance tracking',
-    href: '/dashboard/audit',
-    icon: '📋',
-    color: 'card-green'
+    title: "Audit Dashboard",
+    description: "Audit reports and compliance tracking",
+    href: "/dashboard/audit",
+    icon: "📋",
+    color: "card-green",
   },
   {
-    title: 'Ordering Dashboard',
-    description: 'Order management and tracking reports',
-    href: '/dashboard/ordering',
-    icon: '🛒',
-    color: 'card-purple'
+    title: "Ordering Dashboard",
+    description: "Order management and tracking reports",
+    href: "/dashboard/ordering",
+    icon: "🛒",
+    color: "card-purple",
   },
   {
-    title: 'ISR Reports',
-    description: 'Internal Service Reports and analytics',
-    href: '/dashboard/isr',
-    icon: '📈',
-    color: 'card-orange'
-  }
+    title: "ISR Reports",
+    description: "Internal Service Reports and analytics",
+    href: "/dashboard/isr",
+    icon: "📈",
+    color: "card-orange",
+  },
 ];
 
 export default function Home() {
@@ -191,7 +189,7 @@ export default function Home() {
 
   useEffect(() => {
     if (!isLoading && !isAuthenticated) {
-      router.push('/login');
+      router.push("/login");
     }
   }, [isAuthenticated, isLoading, router]);
 
@@ -213,8 +211,10 @@ export default function Home() {
         <div className="brand">
           <div className="logo">🚀</div>
           <div className="title">
-            <div className="main">Company Dashboards</div>
-            <div className="sub">Access your department reports and analytics</div>
+            <div className="main">Inventory Analytics</div>
+            <div className="sub">
+              Access your department reports and analytics
+            </div>
           </div>
         </div>
       </header>
@@ -223,7 +223,11 @@ export default function Home() {
         {/* Dashboard Cards Grid */}
         <section className="dashboard-grid">
           {dashboardCards.map((card, index) => (
-            <Link key={card.title} href={card.href} className="dashboard-card-link">
+            <Link
+              key={card.title}
+              href={card.href}
+              className="dashboard-card-link"
+            >
               <div className={`dashboard-card ${card.color}`}>
                 <div className="card-icon">{card.icon}</div>
                 <div className="card-content">
