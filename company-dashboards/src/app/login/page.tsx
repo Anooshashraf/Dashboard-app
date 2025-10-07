@@ -141,7 +141,7 @@ export default function Login() {
       login();
       router.push("/");
     } else {
-      setError("Invalid email or password.");
+      setError("Invalid email or password. Use admin@company.com / company123");
     }
   };
 
